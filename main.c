@@ -7,7 +7,7 @@ int padding_msg[1024];
 void decToBinary(int n)
 {
     // array to store binary number
-	salam
+	salam khoobi
 
     // counter for binary array
     int i;
