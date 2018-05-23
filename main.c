@@ -8,7 +8,6 @@ void decToBinary(int n)
 {
     // array to store binary number
 
-
     // counter for binary array
     int i;
     for(i=0; i<64; i++){
