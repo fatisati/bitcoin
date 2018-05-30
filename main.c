@@ -3,10 +3,9 @@
 #include<string.h>
 #include<math.h>
 int binaryNum[64];
-int padding_msg[1024];
 long A, B,C,D,E,F,G,H;
 long k[64];
-int p =100;
+int p =1;
 long H0[100]; //ne andaeye tedad 512 taii ha
 long H1[100];
 long H2[100];
@@ -37,9 +36,10 @@ void decToBinary(int n)
     // printing binary array in reverse order
 }
 
-char* padding(char* msg){
+char* padding(char* msg, int padding_msg[]){
 
     int l = strlen(msg);
+    p = l/512 + 1;
     int tmp = l*8 % 512;
     int k;
     if(tmp<448){
@@ -75,6 +75,55 @@ char* padding(char* msg){
         printf("%d", padding_msg[i]);
     }*/
 }
+
+void int_padding(int msg[], int length, int res[]){
+
+    p = length/512 + 1;
+    int tmp = length % 512;
+    int k;
+
+    if(tmp<448){
+        k = 448 - tmp -1;
+    }
+    else{
+        tmp = tmp - 448;
+        k = tmp + 511;
+    }
+    int i, j=0;
+
+    for(j= 0; j<length; j++){
+       res[j] = msg[j];
+    }
+
+    res[length] = 1;
+
+    for(i=0; i<k; i++){
+        res[length+i+1] = 0;
+    }
+    decToBinary(length);
+    for(i=0; i<64; i++){
+        int x = 63-i;
+        res[k+length+i] = binaryNum[x];
+    }
+}
+
+//return length of output binary msg
+int string_to_binary(char* msg, int res[]){
+
+    int i, j;
+    for(i=0; i<strlen(msg); i++){
+
+        int n = msg[i];
+        decToBinary(n);
+
+        for (j=0; j<8; j++){
+            int x = 7-j;
+            res[i*8+j] = binaryNum[x];
+        }
+    }
+    return strlen(msg)*8;
+}
+
 void Rotate(int arr[], int d, int n, int ans[])
 {
   int i;
@@ -155,7 +204,7 @@ void expansion(int block[],int m, int n, int w[m][n]){
         sigma0(w[k-12],s0);
         for (i = 0; i<32; i++){
             //printf("%d", s1[i]);
-            w[k][i] = (s1[i]+ w[k-6][i]+ s0[i]+ w[k-16][i])%2;
+            w[k][i] = (s1[i]+ w[k-6][i]+ s0[i]+ w[k-15][i])%2;
         }
         //printf("\n");
 
@@ -263,19 +312,28 @@ void  hash(long w, long k){
     A = 3*t1 - t2;
 }
 
-void concat(int res[]){
-
+void concat(int res[], int N){
+    long_to_binary(H0[N], res, 32);
+    printf("in");
+    long_to_binary(H1[N], res+32, 32);
+    long_to_binary(H2[N], res+64, 32);
+    long_to_binary(H3[N], res+96, 32);
+    long_to_binary(H4[N], res+128, 32);
+    long_to_binary(H5[N], res+160, 32);
+    long_to_binary(H6[N], res+192, 32);
+    long_to_binary(H7[N], res+224, 32);
 }
 
-void long_to_binary(long x, int res[32]){
+void long_to_binary(long x, int res[], int length){
     int i;
-    for(i=0; i<32; i++){
+    for(i=0; i<length; i++){
+        printf("inside i:%d\n", i);
         res[i] = x%2;
         x/=2;
     }
 }
 
-void compute(int i, int res[], int m, int n, int w[m][n]){
+void compute(int i, int res[], int w[64][32]){
         int t, j;
         for(t=0; t<64; t++){
             //printf("%d", t);
@@ -287,7 +345,9 @@ void compute(int i, int res[], int m, int n, int w[m][n]){
             }
             //printf("%d", wx);
             hash(wx, k[t]);
+
         }
+
         H0[i] = A + H0[i-1];
         H1[i] = B + H1[i-1];
         H2[i] = C + H2[i-1];
@@ -296,43 +356,91 @@ void compute(int i, int res[], int m, int n, int w[m][n]){
         H5[i] = F + H5[i-1];
         H6[i] = G + H6[i-1];
         H7[i] = H + H7[i-1];
-        for(i=0; i<8; i++){
-            //printf("%d\n", 32*i);
-            long_to_binary(H0[i], res+32*i);
+        printf("i:%d\n", i);
+        concat(res,i);
+        printf("concat\n");
+}
+void header(int res[],int prevHash[],int rootHash[]){
+    int i;
+    //version
+    for(i=0; i<32; i++){
+        res[i] = 0;
+    }
+    for (i=0; i<256; i++){
+        res[i+32]= prevHash[i];
+    }
+    for (i=0; i<256; i++){
+        res[i+288]= rootHash[i];
+    }
+    //end
+    for (i=0; i<128; i++){
+        res[i+544]= 0;
+    }
+
+}
+
+void sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], int header_values[2][640]){
+
+    int msg[1024];
+    long_to_binary(input_msg, msg, length);
+
+    int padding_msg[1024];
+    int_padding(msg, length, padding_msg);
+    int i, j;
+    for (i = 0; i<p; i++){
+        //parsing
+        expansion(padding_msg+i*512,64, 32, w);
+        printf("expansion");
+        //permutation
+        for(j=0; j<64; j++){
+
+            perm(w[j], w[j]);
+
         }
+
+        //init
+        init();
+        //hash
+        compute(i, hash_values[i], w);
+
+        printf("compute");
+        if(i == 0){
+            header(header_values[0],hash_values[0],hash_values[0]);
+        }
+        else{
+            header(header_values[i],hash_values[i-1],hash_values[i]);
+        }
+        printf("c");
+    }
+
 }
 
 int main()
 {
     int w[64][32];
-    //padding("abc");
+    //padding
+    int padding_msg[1024];
     int res[32];
     int block[512];
     int i,j;
     block[0]=1;
     block[200]=1;
     block[510]=1;
-    //printf("%d\n", w[0][0]);
-    //parsing
-    expansion(block,64, 32, w);
-    //permutation
-    for(j=0; j<64; j++){
+    int hash_values[2][256];
+    int header_values[2][640];
 
-        perm(w[j], w[j]);
-        for (i=0; i<32; i++){
-            printf("%d",w[j][i]);
-        }
-
-        printf("\n");
-
+    int msg[1024];
+    int length = string_to_binary("abc", msg);
+    long input_msg = 0;
+    for(i=0; i<length; i++){
+        input_msg += pow(2, i)*msg[i];
     }
-    //init
-    init();
-    //hash
-    int hash_values[p][256];
-    int t;
-    for(i=1; i<p; i++){
-        compute(i, hash_values[i],64, 32, w);
+
+    sha256(input_msg, length, w, hash_values, header_values);
+
+    long long target = 10;
+    long nonce = 0;
+    for(i=0; i<p; i++){
 
     }
     return 0;

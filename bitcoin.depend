@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1527067526 source:c:\users\fateme\desktop\uni\fpga\project\bitcoin\main.c
+1527669125 source:c:\users\fateme\desktop\uni\fpga\project\bitcoin\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<math.h>
 
