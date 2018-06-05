@@ -326,11 +326,21 @@ void concat(int res[], int N){
 
 void long_to_binary(long x, int res[], int length){
     int i;
-    for(i=0; i<length; i++){
+    for(i=length-1; i>-1; i--){
         printf("inside i:%d\n", i);
         res[i] = x%2;
         x/=2;
     }
+}
+
+long binary_to_long(int binary[], int length){
+
+    long res = 0;
+    int i = 0;
+    for(i=0; i<length; i++){
+        res += pow(2, length - i - 1)*binary[i];
+    }
+    return res;
 }
 
 void compute(int i, int res[], int w[64][32]){
@@ -362,10 +372,11 @@ void compute(int i, int res[], int w[64][32]){
 }
 void header(int res[],int prevHash[],int rootHash[]){
     int i;
-    //version
+    //version 02000000: 0000 0010
     for(i=0; i<32; i++){
         res[i] = 0;
     }
+    res[6] = 1;
     for (i=0; i<256; i++){
         res[i+32]= prevHash[i];
     }
@@ -376,10 +387,14 @@ void header(int res[],int prevHash[],int rootHash[]){
     for (i=0; i<128; i++){
         res[i+544]= 0;
     }
-
+    //timestamp : 00110101100010110000010101010011
+    long_to_binary(898303315, res+544, 32);
+    //difficulty
+    long_to_binary(1397813529, res+576, 32);
+    //nonce ?
 }
 
-void sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], int header_values[2][640]){
+long sha256(long input_msg, int length, int block_number, int w[64][32], int hash_values[2][256], int header_values[2][640]){
 
     int msg[1024];
     long_to_binary(input_msg, msg, length);
@@ -387,31 +402,31 @@ void sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], 
     int padding_msg[1024];
     int_padding(msg, length, padding_msg);
     int i, j;
-    for (i = 0; i<p; i++){
-        //parsing
-        expansion(padding_msg+i*512,64, 32, w);
-        printf("expansion");
-        //permutation
-        for(j=0; j<64; j++){
 
-            perm(w[j], w[j]);
+    //parsing
+    expansion(padding_msg,64, 32, w);
+    printf("expansion");
+    //permutation
+    for(j=0; j<64; j++){
 
-        }
+        perm(w[j], w[j]);
 
-        //init
-        init();
-        //hash
-        compute(i, hash_values[i], w);
-
-        printf("compute");
-        if(i == 0){
-            header(header_values[0],hash_values[0],hash_values[0]);
-        }
-        else{
-            header(header_values[i],hash_values[i-1],hash_values[i]);
-        }
-        printf("c");
     }
+
+    //init
+    init();
+    //hash
+    compute(block_number, hash_values[block_number], w);
+
+    printf("compute");
+    if(block_number == 0){
+        header(header_values[0],hash_values[0],hash_values[0]);
+    }
+    else{
+        header(header_values[block_number],hash_values[block_number-1],hash_values[block_number]);
+    }
+
+    return binary_to_long(hash_values[block_number], 256);
 
 }
 
@@ -430,18 +445,35 @@ int main()
     int header_values[2][640];
 
     int msg[1024];
-    int length = string_to_binary("abc", msg);
+    int length = string_to_binary("abcd", msg);
+
+    int input_length;
+    if(length>512){input_length = 512;} else{input_length=length;}
+
     long input_msg = 0;
-    for(i=0; i<length; i++){
+    for(i=0; i<512; i++){
         input_msg += pow(2, i)*msg[i];
     }
+    sha256(input_msg, input_length, 0, w, hash_values, header_values);
 
-    sha256(input_msg, length, w, hash_values, header_values);
-
-    long long target = 10;
-    long nonce = 0;
-    for(i=0; i<p; i++){
-
+    if(length>512){
+        input_msg = 0;
+        for(i=0; i<512; i++){
+            input_msg += pow(2, i)*msg[i+512];
+        }
+        sha256(input_msg, length-512, 1, w, hash_values, header_values);
     }
+
+    long target = 10;
+    long nonce = 0;
+    long hash = 100;
+    long block_header_l = binary_to_long(header_values[0], 256);
+
+    while(hash>target){
+        hash = sha256(sha256(nonce+block_header_l, 512, 0, w, hash_values, header_values),
+                      512, 0, w, hash_values, header_values );
+        nonce++;
+    }
+    printf("\n%d",hash);
     return 0;
 }
