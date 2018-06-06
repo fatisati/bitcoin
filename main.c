@@ -5,8 +5,9 @@
 int binaryNum[64];
 long A, B,C,D,E,F,G,H;
 long k[64];
+long block_header_l;
 int p =1;
-long H0[100]; //ne andaeye tedad 512 taii ha
+long H0[100]; //be andazeye tedad 512 taii ha
 long H1[100];
 long H2[100];
 long H3[100];
@@ -204,6 +205,71 @@ void init(){
     H5[0] = F;
     H6[0] = G;
     H7[0] = H;
+
+    k[0]  = 0x428a2f98;
+    k[1]  = 0x71374491;
+    k[2]  = 0xb5c0fbcf;
+    k[3]  = 0xe9b5dba5;
+    k[4]  = 0x3956c25b;
+    k[5]  = 0x59f111f1;
+    k[6]  = 0x923f82a4;
+    k[7]  = 0xab1c5ed5;
+    k[8]  = 0xd807aa98;
+    k[9]  = 0x12835b01;
+    k[10] = 0x243185be;
+    k[11] = 0x550c7dc3;
+    k[12] = 0x72be5d74;
+    k[13] = 0x80deb1fe;
+    k[14] = 0x9bdc06a7;
+    k[15] = 0xc19bf174;
+    k[16] = 0xe49b69c1;
+    k[17] = 0xefbe4786;
+    k[18] = 0x0fc19dc6;
+    k[19] = 0x240ca1cc;
+    k[20] = 0x2de92c6f;
+    k[21] = 0x4a7484aa;
+    k[22] = 0x5cb0a9dc;
+    k[23] = 0x76f988da;
+    k[24] = 0x983e5152;
+    k[25] = 0xa831c66c;
+    k[26] = 0xb00327c8;
+    k[27] = 0xbf597fc7;
+    k[28] = 0xc6e00bf3;
+    k[29] = 0xd5a79147;
+    k[30] = 0x06ca6351;
+    k[31] = 0x14292967;
+    k[32] = 0x27b70a85;
+    k[33] = 0x2e1b2138;
+    k[34] = 0x4d2c6dfc;
+    k[35] = 0x53380d13;
+    k[36] = 0x650a7354;
+    k[37] = 0x766a0abb;
+    k[38] = 0x81c2c92e;
+    k[39] = 0x92722c85;
+    k[40] = 0xa2bfe8a1;
+    k[41] = 0xa81a664b;
+    k[42] = 0xc24b8b70;
+    k[43] = 0xc76c51a3;
+    k[44] = 0xd192e819;
+    k[45] = 0xd6990624;
+    k[46] = 0xf40e3585;
+    k[47] = 0x106aa070;
+    k[48] = 0x19a4c116;
+    k[49] = 0x1e376c08;
+    k[50] = 0x2748774c;
+    k[51] = 0x34b0bcb5;
+    k[52] = 0x391c0cb3;
+    k[53] = 0x4ed8aa4a;
+    k[54] = 0x5b9cca4f;
+    k[55] = 0x682e6ff3;
+    k[56] = 0x748f82ee;
+    k[57] = 0x78a5636f;
+    k[58] = 0x84c87814;
+    k[59] = 0x8cc70208;
+    k[60] = 0x90befffa;
+    k[61] = 0xa4506ceb;
+    k[62] = 0xbe49a3f7;
+    k[63] = 0xc67178f2;
 }
 
 long lxor(long a, long b){
@@ -288,7 +354,7 @@ void concat(int res[], int N){
 void long_to_binary(long x, int res[], int length){
     int i;
     for(i=length-1; i>-1; i--){
-        printf("inside i:%d\n", i);
+        //printf("inside i:%d\n", i);
         res[i] = x%2;
         x/=2;
     }
@@ -327,7 +393,7 @@ void compute(int i, int res[], int w[64][32]){
         H5[i] = F + H5[i-1];
         H6[i] = G + H6[i-1];
         H7[i] = H + H7[i-1];
-        printf("i:%d\n", i);
+      //  printf("i:%d\n", i);
         concat(res,i);
         printf("concat\n");
 }
@@ -355,7 +421,7 @@ void header(int res[],int prevHash[],int rootHash[]){
     //nonce ?
 }
 
-long sha256(long input_msg, int length, int block_number, int w[64][32], int hash_values[2][256], int header_values[2][640]){
+long sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], int header_values[2][640]){
 
     int msg[1024];
     long_to_binary(input_msg, msg, length);
@@ -364,33 +430,28 @@ long sha256(long input_msg, int length, int block_number, int w[64][32], int has
     int_padding(msg, length, padding_msg);
     int i, j;
 
-    //parsing
-    expansion(padding_msg,64, 32, w);
-    printf("expansion");
-    //permutation
-    for(j=0; j<64; j++){
+    for (i=0; i<p; i++){
+        //parsing
+        expansion(padding_msg+i*512,64, 32, w);
+        printf("expansion\n");
+        //permutation
+        for(j=0; j<64; j++){
 
-        perm(w[j], w[j]);
+            perm(w[j], w[j]);
+
+        }
+
+        //init
+        init();
+        //hash
+        compute(i, hash_values[i], w);
+
+        printf("compute\n");
 
     }
-
-    //init
-    init();
-    //hash
-    compute(block_number, hash_values[block_number], w);
-
-    printf("compute");
-    if(block_number == 0){
-        header(header_values[0],hash_values[0],hash_values[0]);
-    }
-    else{
-        header(header_values[block_number],hash_values[block_number-1],hash_values[block_number]);
-    }
-
-    return binary_to_long(hash_values[block_number], 256);
+    return binary_to_long(hash_values[p-1], 256);
 
 }
-
 int main()
 {
     int w[64][32];
@@ -399,16 +460,23 @@ int main()
     int res[32];
     int block[512];
     int i,j;
-    block[0]=1;
-    block[200]=1;
-    block[510]=1;
+   // block[0]=1;
+   // block[200]=1;
+   // block[510]=1;
     int hash_values[2][256];
     int header_values[2][640];
 
     int msg[1024];
     int length = string_to_binary("abcd", msg);
 
-    int input_length;
+    long input_msg = 0;
+    for(i=0; i<length; i++){
+        input_msg += pow(2, i)*msg[i];
+    }
+    sha256(input_msg, length, w, hash_values, header_values);
+
+
+   /* int input_length;
     if(length>512){input_length = 512;} else{input_length=length;}
 
     long input_msg = 0;
@@ -424,17 +492,19 @@ int main()
         }
         sha256(input_msg, length-512, 1, w, hash_values, header_values);
     }
+    */
 
-    long target = 10;
+    long target = 0x001af34ed4ed31309dfdaff345ff6a2370faddeaaeeff3f31ad3bc32dec3de31;
+    //printf("tar:%ud",target);
     long nonce = 0;
-    long hash = 100;
-    long block_header_l = binary_to_long(header_values[0], 256);
+    long hash = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
+//    long block_header_l = binary_to_long(header_values[0], 256);
 
     while(hash>target){
-        hash = sha256(sha256(nonce+block_header_l, 512, 0, w, hash_values, header_values),
-                      512, 0, w, hash_values, header_values );
+        hash = sha256(sha256(nonce+block_header_l, 512, w, hash_values, header_values),
+                      512, w, hash_values, header_values );
         nonce++;
     }
-    printf("\n%d",hash);
+    printf("\n%ud",hash);
     return 0;
 }
