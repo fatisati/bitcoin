@@ -498,7 +498,7 @@ int main()
     //printf("tar:%ud",target);
     long nonce = 0;
     long hash = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
-//    long block_header_l = binary_to_long(header_values[0], 256);
+    long block_header_l = binary_to_long(header_values[0], 256);
 
     while(hash>target){
         hash = sha256(sha256(nonce+block_header_l, 512, w, hash_values, header_values),
