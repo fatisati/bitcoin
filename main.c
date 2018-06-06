@@ -36,45 +36,6 @@ void decToBinary(int n)
     // printing binary array in reverse order
 }
 
-char* padding(char* msg, int padding_msg[]){
-
-    int l = strlen(msg);
-    p = l/512 + 1;
-    int tmp = l*8 % 512;
-    int k;
-    if(tmp<448){
-        k = 448 - tmp -1;
-    }
-    else{
-        tmp = tmp - 448;
-        k = tmp + 511;
-    }
-    int i, j=0;
-
-    for(j= 0; j<l; j++){
-
-        int n = msg[j];
-        decToBinary(n);
-        for (i=0; i<8; i++){
-            int x = 7-i;
-
-            padding_msg[j*8+i] = binaryNum[x];
-        }
-    }
-
-    padding_msg[l*8] = 1;
-    for(i=0; i<k; i++){
-        padding_msg[l*8+i+1] = 0;
-    }
-    decToBinary(l);
-    for(i=0; i<64; i++){
-        int x = 63-i;
-        padding_msg[k+l*8+i] = binaryNum[x];
-    }
-    /*for(i=0; i<8*l+k+64; i++){
-        printf("%d", padding_msg[i]);
-    }*/
-}
 
 void int_padding(int msg[], int length, int res[]){
 
