@@ -4,7 +4,9 @@
 #include<math.h>
 int binaryNum[64];
 long A, B,C,D,E,F,G,H;
+
 long k[64];
+
 long block_header_l;
 int p =1;
 long H0[100]; //be andazeye tedad 512 taii ha
@@ -441,6 +443,7 @@ long sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], 
 
         }
 
+
         //init
         init();
         //hash
@@ -475,7 +478,6 @@ int main()
     }
     sha256(input_msg, length, w, hash_values, header_values);
 
-
    /* int input_length;
     if(length>512){input_length = 512;} else{input_length=length;}
 
@@ -491,6 +493,7 @@ int main()
             input_msg += pow(2, i)*msg[i+512];
         }
         sha256(input_msg, length-512, 1, w, hash_values, header_values);
+<<<<<<< HEAD
     }
     */
 
@@ -499,6 +502,7 @@ int main()
     long nonce = 0;
     long hash = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     long block_header_l = binary_to_long(header_values[0], 256);
+
 
     while(hash>target){
         hash = sha256(sha256(nonce+block_header_l, 512, w, hash_values, header_values),
