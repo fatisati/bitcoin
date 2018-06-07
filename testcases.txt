@@ -1,0 +1,11 @@
+text : "abcd"
+encrypted : d7dd96e69150df149150df1419b43053066feaa7e9c22ac8e9c22ac819b59cd7
+
+text : "1234567890"
+encrypted : 1e29f0bf3d23daa73d23daa75762caebbaacbec13f40ff773f40ff773dd10c3b
+
+text : "Javad Talafy"
+encrypted : 95ccedfcb9b3764cb9b3764c6daf8227cbd3ae2d10aead3a10aead3a6204fc71
+
+text : "Lorem ipsum dolor sit amet, vis eius vitae possit id. Ex pro errem tincidunt, dicam graece possit eu duo. Ius tota tation bonorum ea. Quidam recusabo persequeris qui no."
+encrypted : f561a413e1afb5d4e1afb5d4ab1646b00547132f64afed9864afed986838bee8
