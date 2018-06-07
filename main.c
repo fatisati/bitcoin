@@ -1,10 +1,13 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
 #include<math.h>
 int binaryNum[64];
 long A, B,C,D,E,F,G,H;
+
 long k[64];
+
 long block_header_l;
 int p =1;
 long H0[100]; //be andazeye tedad 512 taii ha
@@ -37,45 +40,6 @@ void decToBinary(int n)
     // printing binary array in reverse order
 }
 
-char* padding(char* msg, int padding_msg[]){
-
-    int l = strlen(msg);
-    p = l/512 + 1;
-    int tmp = l*8 % 512;
-    int k;
-    if(tmp<448){
-        k = 448 - tmp -1;
-    }
-    else{
-        tmp = tmp - 448;
-        k = tmp + 511;
-    }
-    int i, j=0;
-
-    for(j= 0; j<l; j++){
-
-        int n = msg[j];
-        decToBinary(n);
-        for (i=0; i<8; i++){
-            int x = 7-i;
-
-            padding_msg[j*8+i] = binaryNum[x];
-        }
-    }
-
-    padding_msg[l*8] = 1;
-    for(i=0; i<k; i++){
-        padding_msg[l*8+i+1] = 0;
-    }
-    decToBinary(l);
-    for(i=0; i<64; i++){
-        int x = 63-i;
-        padding_msg[k+l*8+i] = binaryNum[x];
-    }
-    /*for(i=0; i<8*l+k+64; i++){
-        printf("%d", padding_msg[i]);
-    }*/
-}
 
 void int_padding(int msg[], int length, int res[]){
 
@@ -460,7 +424,7 @@ void header(int res[],int prevHash[],int rootHash[]){
     //nonce ?
 }
 
-long sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], int header_values[2][640]){
+long sha256(long input_msg, int length, int w[64][32], int hash_values[2][256]){
 
     int msg[1024];
     long_to_binary(input_msg, msg, length);
@@ -470,35 +434,28 @@ long sha256(long input_msg, int length, int w[64][32], int hash_values[2][256], 
     int i, j;
 
     for (i=0; i<p; i++){
-    //parsing
-    expansion(padding_msg,64, 32, w);
-    printf("expansion");
-    //permutation
-    for(j=0; j<64; j++){
+        //parsing
+        expansion(padding_msg+i*512,64, 32, w);
+        printf("expansion\n");
+        //permutation
+        for(j=0; j<64; j++){
 
-        perm(w[j], w[j]);
+            perm(w[j], w[j]);
+
+        }
+
+
+        //init
+        init();
+        //hash
+        compute(i, hash_values[i], w);
+
+        printf("compute\n");
 
     }
-
-    //init
-    init();
-    //hash
-    compute(i, hash_values[i], w);
-
-    printf("compute");
-
-    hash_values[p][0] = 0;
-    //0x17975b97c18ed1f7e255adf297599b55330edab87803c8170100000000000000;
-
-    header(header_values[i],hash_values[0],hash_values[i]);
-
-    block_header_l = binary_to_long(header_values[i], 256);
-    printf("in sha:%d ,hashvalues: %d\n",i, hash_values[p]);
-    }
-    return binary_to_long(hash_values[p], 256);
+    return binary_to_long(hash_values[p-1], 256);
 
 }
-
 int main()
 {
     int w[64][32];
@@ -507,11 +464,9 @@ int main()
     int res[32];
     int block[512];
     int i,j;
-   // block[0]=1;
-   // block[200]=1;
-   // block[510]=1;
+
     int hash_values[2][256];
-    int header_values[2][640];
+    int header_values[640];
 
     int msg[1024];
     int length = string_to_binary("abcd", msg);
@@ -520,38 +475,32 @@ int main()
     for(i=0; i<length; i++){
         input_msg += pow(2, i)*msg[i];
     }
-    sha256(input_msg, length, w, hash_values, header_values);
+    int prevHash[256];
+    int rootHash[256];
 
+    long rootH;
+    rootH = sha256(input_msg, length, w, hash_values);
+    long_to_binary(rootH,rootHash,256);
 
-   /* int input_length;
-    if(length>512){input_length = 512;} else{input_length=length;}
+    long prevH = 0x17975b97c18ed1f7e255adf297599b55330edab87803c8170100000000000000;
+    long_to_binary(prevH,prevHash,256);
 
-    long input_msg = 0;
-    for(i=0; i<512; i++){
-        input_msg += pow(2, i)*msg[i];
-    }
-    sha256(input_msg, input_length, 0, w, hash_values, header_values);
-
-    if(length>512){
-        input_msg = 0;
-        for(i=0; i<512; i++){
-            input_msg += pow(2, i)*msg[i+512];
-        }
-        sha256(input_msg, length-512, 1, w, hash_values, header_values);
-    }
-    */
+    header(header_values,prevHash,rootHash);
 
     long target = 0x001af34ed4ed31309dfdaff345ff6a2370faddeaaeeff3f31ad3bc32dec3de31;
     //printf("tar:%ud",target);
     long nonce = 0;
     long hash = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
-//    long block_header_l = binary_to_long(header_values[0], 256);
+    long block_header_l = binary_to_long(header_values, 640);
+
 
     while(hash>target){
-        hash = sha256(sha256(nonce+block_header_l, 512, w, hash_values, header_values),
-                      512, w, hash_values, header_values );
+        hash = sha256(sha256(nonce+block_header_l, 512, w, hash_values),
+                      512, w, hash_values );
         nonce++;
+        //printf("\n%ud",hash);
     }
     printf("\n%ud",hash);
     return 0;
 }
+
