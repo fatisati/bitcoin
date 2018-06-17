@@ -3,6 +3,8 @@
 #include<string.h>
 
 //long size: 32 bit
+//H : 32bit
+//compression output: 8*32 = 256 bit
 int binaryNum[64];
 unsigned long A, B,C,D,E,F,G,H;
 
@@ -395,7 +397,7 @@ long binary_to_long(int binary[], int length){
     return res;
 }
 
-void compute(int i, int res[], int w[64][32]){
+void compression(int i, int res[], int w[64][32]){
         int t, j;
         for(t=0; t<64; t++){
             //printf("%d", t);
@@ -407,7 +409,6 @@ void compute(int i, int res[], int w[64][32]){
             }
             //printf("%d", wx);
             hash(wx, k[t]);
-
         }
 
         H0[i] = A + H0[i-1];
@@ -418,7 +419,7 @@ void compute(int i, int res[], int w[64][32]){
         H5[i] = F + H5[i-1];
         H6[i] = G + H6[i-1];
         H7[i] = H + H7[i-1];
-      //  printf("i:%d\n", i);
+
         concat(res,i);
         printf("concat\n");
 }
@@ -470,9 +471,9 @@ void sha256(int msg[], int length, int w[64][32], int hash_values[2][256]){
         //init
         init();
         //hash
-        compute(i, hash_values[i], w);
+        compression(i, hash_values[i], w);
 
-        printf("compute\n");
+        printf("compression\n");
 
     }
     //return hash_values[p-1];
