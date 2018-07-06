@@ -31,7 +31,8 @@ use ieee.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 package pkg is
-        type arr2d is array (63 downto 0) of unsigned(31 downto 0);
+        type arr2d is array (0 to 63) of unsigned(31 downto 0);
+        type arr8_31 is array (0 to 7) of unsigned(31 downto 0);
 end pkg;
 
 library IEEE;
@@ -41,8 +42,9 @@ use ieee.numeric_std.all;
 
 entity compression is
   Port (w, k: in  arr2d; 
-        rst: in std_logic;
-        hash: out unsigned(255 downto 0)
+        hi: in arr8_31;
+        rst, clk, en: in std_logic;
+        hash: out arr8_31
         );
 end compression;
 
@@ -120,21 +122,38 @@ end sigma2;
 signal t1, t2 : unsigned(31 downto 0);
 begin
 
-process(rst)
+process(clk)
 begin
-    if(rst = '1')then
-        for t in 0 to 63 loop
-            t2 <= h + sigma1(ee) + ch(ee, f, g) + k(t) + w(t);
-            t1 <= sigma0(a) + maj(a,b,c) + sigma2(c+d);
-            h <= g;
-            f <= ee;
-            d <= c;
-            b <= a;
-            g <= f;
-            ee <= d + t1;
-            c <= b;
-            a <= t1 + t1 + t1 - t2;
-        end loop;
+    if(en = '1')then
+        if(rst = '1')then
+             a  <= x"6a09e667";
+             B  <= x"bb67ae85";
+             C  <= x"3c6ef372";
+             D  <= x"a54ff53a";
+             Ee <= x"510e527f";
+             F  <= x"9b05688c";
+             G  <= x"1f83d9ab";
+             H  <= x"5be0cd19";
+        elsif(clk = '1')then
+            for t in 0 to 63 loop
+                t2 <= h + sigma1(ee) + ch(ee, f, g) + k(t) + w(t);
+                t1 <= sigma0(a) + maj(a,b,c) + sigma2(c+d);
+                h <= g;
+                f <= ee;
+                d <= c;
+                b <= a;
+                g <= f;
+                ee <= d + t1;
+                c <= b;
+                a <= t1 + t1 + t1 - t2;
+            end loop;
+            
+            hash(0) <= a  + hi(0); hash(1) <= b + hi(1);
+            hash(2) <= c  + hi(2); hash(3) <= d + hi(3); 
+            hash(4) <= ee + hi(4); hash(5) <= f + hi(5);
+            hash(6) <= g  + hi(6); hash(7) <= h + hi(7); 
+            
+        end if;
     end if;
 end process;
 
