@@ -142,10 +142,10 @@ k(61) <= x"a4506ceb";
 k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
-rst <= '1', '0' after 30 ns, '1' after 130 ns, '0' after 160 ns;
+rst <= '1', '0' after 30 ns, '1' after 130 ns, '0' after 160 ns, '1' after 360 ns, '0' after 390 ns;
 clk <= not(clk) after 50 ns;
-en1<='0', '1' after 250 ns, '0' after 350 ns;
-en2<='0', '1' after 270 ns, '0' after 450 ns;
+en1<='0', '1' after 260 ns, '0' after 360 ns;
+en2<='0', '1' after 360 ns, '0' after 550 ns;
 
 msg <= "01100001011000100110001101100100"; --abcd--"00000000011000010110001001100011"; --abc
 

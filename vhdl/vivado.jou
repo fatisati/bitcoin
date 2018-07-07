@@ -43,3 +43,7 @@ update_compile_order -fileset sim_1
 update_compile_order -fileset sim_1
 update_compile_order -fileset sim_1
 relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
