@@ -39,6 +39,16 @@ end testbench;
 
 architecture Behavioral of testbench is
 
+component expansion_perm is
+  generic (l : integer := 31);
+  Port (msg: in unsigned(l downto 0);
+        clk: in std_logic;
+        w1: out arr2d := (others => (others => '0'));
+        w2: out arr2d := (others => (others => '0'));
+        two_block: out std_logic := '0'
+         );
+end component;
+
 component compression is
   Port (w, k: in  arr2d; 
         hi: in arr8_31;
@@ -46,6 +56,9 @@ component compression is
         hash: out arr8_31
         );
 end component;
+
+signal msg: unsigned(31 downto 0);
+signal two_block: std_logic := '0';
 
 signal w1, w2, k:  arr2d; 
 signal hi: arr8_31;
@@ -127,12 +140,16 @@ k(60) <= x"90befffa";
 k(61) <= x"a4506ceb";
 k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
-w1 <= k;
-w2 <= k;
+
 rst <= '1', '0' after 30 ns, '1' after 130 ns, '0' after 160 ns;
 clk <= not(clk) after 50 ns;
 en1<='1', '0' after 150 ns;
 en2<='0', '1' after 120 ns, '0' after 300 ns;
+
+msg <= "00000000011000010110001001100011"; --abc
+
+u: expansion_perm generic map(31) port map (msg, clk, w1, w2, two_block);
+
 l0: compression port map(w1, k, hi, rst, clk, en1,  hash1);
 l2: compression port map(w2, k, hash1, rst, clk, en2, hash2);
 end Behavioral;
