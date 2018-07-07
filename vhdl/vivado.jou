@@ -18,3 +18,28 @@ relaunch_sim
 relaunch_sim
 add_wave {{/testbench/u}} 
 relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+close_sim
+launch_simulation
+launch_simulation
+launch_simulation
+source testbench.tcl
+relaunch_sim
+add_wave {{/testbench/u}} 
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+close_sim
+launch_simulation
+launch_simulation
+launch_simulation
+source testbench.tcl
+relaunch_sim
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+relaunch_sim

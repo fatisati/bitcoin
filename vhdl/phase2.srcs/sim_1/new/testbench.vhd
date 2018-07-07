@@ -40,8 +40,8 @@ end testbench;
 architecture Behavioral of testbench is
 
 component expansion_perm is
-  generic (l : integer := 31);
-  Port (msg: in unsigned(l downto 0);
+  generic (length : integer := 31);
+  Port (msg: in unsigned(length downto 0);
         clk: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
@@ -64,6 +64,7 @@ signal w1, w2, k:  arr2d;
 signal hi: arr8_31;
 signal rst, clk, en1, en2: std_logic := '0';
 signal hash1, hash2: arr8_31;
+signal final_hash: unsigned(255 downto 0);
 
 begin
 
@@ -143,13 +144,16 @@ k(63) <= x"c67178f2";
 
 rst <= '1', '0' after 30 ns, '1' after 130 ns, '0' after 160 ns;
 clk <= not(clk) after 50 ns;
-en1<='1', '0' after 150 ns;
-en2<='0', '1' after 120 ns, '0' after 300 ns;
+en1<='0', '1' after 250 ns, '0' after 350 ns;
+en2<='0', '1' after 270 ns, '0' after 450 ns;
 
-msg <= "00000000011000010110001001100011"; --abc
+msg <= "01100001011000100110001101100100"; --abcd--"00000000011000010110001001100011"; --abc
 
 u: expansion_perm generic map(31) port map (msg, clk, w1, w2, two_block);
 
 l0: compression port map(w1, k, hi, rst, clk, en1,  hash1);
 l2: compression port map(w2, k, hash1, rst, clk, en2, hash2);
+
+final_hash <= (hash1(0) & hash1(1)&hash1(2)&hash1(3)&hash1(4)&hash1(5)&hash1(6)&hash1(7)) when(two_block='0')
+                else (hash2(0)&hash2(1)&hash2(2)&hash2(3)&hash2(4)&hash2(5)&hash2(6)&hash2(7));
 end Behavioral;

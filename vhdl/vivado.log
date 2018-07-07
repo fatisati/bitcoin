@@ -224,3 +224,631 @@ launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): 
 Vivado Simulator 2015.4
 Time resolution is 1 ps
 relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 838.980 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 922.000 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+ERROR: [VRFC 10-91] l is not declared [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd:83]
+ERROR: [VRFC 10-1504] unit behavioral ignored due to previous errors [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd:49]
+INFO: [VRFC 10-240] VHDL file C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd ignored due to errors
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log' file for more information.
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+ERROR: [VRFC 10-91] l is not declared [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:44]
+ERROR: [VRFC 10-1504] unit behavioral ignored due to previous errors [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:40]
+INFO: [VRFC 10-240] VHDL file C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd ignored due to errors
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log' file for more information.
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+
+****** Webtalk v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xsim.dir/testbench_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Jul 07 21:53:37 2018...
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:08 . Memory (MB): peak = 922.000 ; gain = 0.000
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "testbench_behav -key {Behavioral:sim_1:Functional:testbench} -tclbatch {testbench.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+source testbench.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'testbench_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:12 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:12 . Memory (MB): peak = 922.000 ; gain = 0.000
+add_wave {{/testbench/u}} 
+WARNING: Simulation object /testbench/u/binaryNum was not traceable in the design for the following reason:
+Vivado Simulator does not yet support tracing of VHDL variables.
+WARNING: Simulation object /testbench/u/p was not traceable in the design for the following reason:
+Vivado Simulator does not yet support tracing of VHDL variables.
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 922.000 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 922.000 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 922.000 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+ERROR: [VRFC 10-724] found '0' definitions of operator "&", cannot determine exact overloaded matching definition for "&" [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:157]
+ERROR: [VRFC 10-724] found '0' definitions of operator "&", cannot determine exact overloaded matching definition for "&" [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:158]
+ERROR: [VRFC 10-1504] unit behavioral ignored due to previous errors [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:40]
+INFO: [VRFC 10-240] VHDL file C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd ignored due to errors
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log' file for more information.
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+ERROR: [VRFC 10-724] found '0' definitions of operator "&", cannot determine exact overloaded matching definition for "&" [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:157]
+ERROR: [VRFC 10-1504] unit behavioral ignored due to previous errors [C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd:40]
+INFO: [VRFC 10-240] VHDL file C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd ignored due to errors
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xvhdl.log' file for more information.
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+
+****** Webtalk v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav/xsim.dir/testbench_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Jul 07 22:12:46 2018...
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:08 . Memory (MB): peak = 926.012 ; gain = 0.000
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "testbench_behav -key {Behavioral:sim_1:Functional:testbench} -tclbatch {testbench.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+source testbench.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'testbench_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:12 . Memory (MB): peak = 926.012 ; gain = 0.000
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 926.012 ; gain = 0.000
+INFO: [Common 17-344] 'run_program' was cancelled
+1
+    while executing
+"catch {rdi::run_program $scr_file} error_log"
+    (procedure "::tclapp::xilinx::xsim::usf_launch_script" line 35)
+    invoked from within
+"::tclapp::xilinx::xsim::usf_launch_script "xsim" $step"
+    (procedure "tclapp::xilinx::xsim::elaborate" line 13)
+    invoked from within
+"tclapp::xilinx::xsim::elaborate { -simset sim_1 -mode behavioral -run_dir C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav..."
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 926.012 ; gain = 0.000
+INFO: [Common 17-344] 'launch_simulation' was cancelled
+INFO: [Common 17-344] 'relaunch_sim' was cancelled
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+relaunch_sim
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity compression
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity expansion_perm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity testbench
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 82de61160d1144b591aa5512e9b7cf45 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testbench_behav xil_defaultlib.testbench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.pkg
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.expansion_perm [\expansion_perm(31)\]
+Compiling architecture behavioral of entity xil_defaultlib.compression [compression_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 926.012 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 926.012 ; gain = 0.000
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 926.012 ; gain = 0.000

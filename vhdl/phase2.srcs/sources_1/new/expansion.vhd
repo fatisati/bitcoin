@@ -37,8 +37,8 @@ use work.pkg.all;
 
 
 entity expansion_perm is
-  generic (l : integer := 31);
-  Port (msg: in unsigned(l downto 0);
+  generic (length : integer := 31);
+  Port (msg: in unsigned(length downto 0);
         clk: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
@@ -80,7 +80,7 @@ shared variable p: integer;
 --    return res;
 --end string_to_binary;
 
-impure function padding( msg: unsigned(l downto 0)) return unsigned is
+impure function padding( msg: unsigned(length downto 0)) return unsigned is
 
     variable res: unsigned(1023 downto 0);
     variable tmp, k: integer;
@@ -88,9 +88,9 @@ impure function padding( msg: unsigned(l downto 0)) return unsigned is
     
 begin
 
-    p := l/512; --if p = 1 : 2 block
+    p := length/512; --if p = 1 : 2 block
     
-    tmp := l mod 512;
+    tmp := length mod 512;
     if(tmp<448) then
         k := 448 - tmp -1;
     else
@@ -98,20 +98,20 @@ begin
         k := tmp + 511;
     end if;
     
-    for J in 0 to l loop
+    for J in 0 to length loop
        res(J) := msg(J);
     end loop;
 
-    res(l) := '1';
+    res(length+1) := '1';
 
     for I in 0 to k-1 loop
-        res(l+I+1) := '0';
+        res(length+I+2) := '0';
     end loop;
     
-    binaryNum := to_unsigned(l, 64);
+    binaryNum := to_unsigned(length, 64);
     
     for I in 0 to 63 loop
-        res(k+l+I) := binaryNum(63 - I);
+        res(k+length+I+1) := binaryNum(63 - I);
     end loop;
     
     return res;
@@ -186,16 +186,16 @@ begin
 process(clk)
 begin
     if(rising_edge(clk)) then
-        if(l > 448)then
+        if(length > 448)then
             two_block<='1';
         end if;
         padding_msg <= padding(msg);
 
-        res1 <= expansion(padding_msg(511 downto 0));
-        for I in 0 to 63 loop
-            w1(I) <= perm(res1(I));
-            w2(I) <= (others => '0');
-        end loop;
+            res1 <= expansion(padding_msg(511 downto 0));
+            for I in 0 to 63 loop
+                w1(I) <= perm(res1(I));
+                w2(I) <= (others => '0');
+            end loop;
         if (p = 1) then
             two_block <= '1';
             res2 <= expansion(padding_msg(1023 downto 512));
