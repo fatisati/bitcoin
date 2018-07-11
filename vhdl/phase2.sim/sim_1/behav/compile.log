@@ -1,6 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/compression.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity compression
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sources_1/new/expansion.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity expansion_perm
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Fateme/Desktop/uni/fpga/project/bitcoin/vhdl/phase2.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity testbench
