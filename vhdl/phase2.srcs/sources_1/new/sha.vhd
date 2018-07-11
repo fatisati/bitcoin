@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 07/06/2018 11:06:19 AM
+-- Create Date: 07/11/2018 10:00:39 AM
 -- Design Name: 
--- Module Name: testbench - Behavioral
+-- Module Name: sha - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -23,7 +23,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use work.pkg.all;
 use ieee.numeric_std.all;
-
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -33,24 +32,16 @@ use ieee.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity testbench is
---  Port ( );
-end testbench;
-
-architecture Behavioral of testbench is
-
-<<<<<<< HEAD
-component sha is
-  generic (length : integer := 31);
+entity sha is
+       generic (length : integer := 31);
   Port ( msg: in unsigned(length downto 0);
           clk,rst,en1,en2: in std_logic;
+          ready: out std_logic;
           final_hash: out unsigned(255 downto 0)
   );
-end component;
+end sha;
 
-signal msg: unsigned(31 downto 0);
-signal rst, clk, en1, en2: std_logic := '0';
-=======
+architecture Behavioral of sha is
 component expansion_perm is
   generic (length : integer := 31);
   Port (msg: in unsigned(length downto 0);
@@ -69,20 +60,15 @@ component compression is
         );
 end component;
 
-signal msg: unsigned(31 downto 0);
+
 signal two_block: std_logic := '0';
 
 signal w1, w2, k:  arr2d; 
 signal hi: arr8_31;
-signal rst, clk, en1, en2: std_logic := '0';
 signal hash1, hash2: arr8_31;
->>>>>>> 9bb661b6d29a9e8465293b1e514142d5d543a013
-signal final_hash: unsigned(255 downto 0);
-
+signal finish1,finish2: std_logic;
 begin
 
-<<<<<<< HEAD
-=======
 hi(0) <= x"6a09e667";
 hi(1) <= x"bb67ae85";
 hi(2) <= x"3c6ef372";
@@ -157,23 +143,14 @@ k(61) <= x"a4506ceb";
 k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
->>>>>>> 9bb661b6d29a9e8465293b1e514142d5d543a013
-rst <= '1', '0' after 30 ns, '1' after 130 ns, '0' after 160 ns, '1' after 360 ns, '0' after 390 ns;
-clk <= not(clk) after 50 ns;
-en1<='0', '1' after 260 ns, '0' after 360 ns;
-en2<='0', '1' after 360 ns, '0' after 550 ns;
 
-msg <= "01100001011000100110001101100100"; --abcd--"00000000011000010110001001100011"; --abc
-
-<<<<<<< HEAD
-u: sha generic map(31) port map (msg,clk,rst,en1,en2,final_hash);
-=======
 u: expansion_perm generic map(31) port map (msg, clk, w1, w2, two_block);
 
-l0: compression port map(w1, k, hi, rst, clk, en1,  hash1);
-l2: compression port map(w2, k, hash1, rst, clk, en2, hash2);
+l0: compression port map(w1, k, hi, rst, clk, en1,  hash1, finish1);
+l2: compression port map(w2, k, hash1, rst, clk, en2, hash2, finish2);
 
 final_hash <= (hash1(0) & hash1(1)&hash1(2)&hash1(3)&hash1(4)&hash1(5)&hash1(6)&hash1(7)) when(two_block='0')
                 else (hash2(0)&hash2(1)&hash2(2)&hash2(3)&hash2(4)&hash2(5)&hash2(6)&hash2(7));
->>>>>>> 9bb661b6d29a9e8465293b1e514142d5d543a013
+ready <= finish1 when(two_block='0')  
+                else finish2;  
 end Behavioral;

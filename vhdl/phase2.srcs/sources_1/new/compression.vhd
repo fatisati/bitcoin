@@ -44,7 +44,8 @@ entity compression is
   Port (w, k: in  arr2d; 
         hi: in arr8_31;
         rst, clk, en: in std_logic;
-        hash: out arr8_31
+        hash: out arr8_31;
+        finish: std_logic := '0'
         );
 end compression;
 
@@ -134,6 +135,7 @@ begin
              F  <= x"9b05688c";
              G  <= x"1f83d9ab";
              H  <= x"5be0cd19";
+             finish <= '0';
         elsif(clk = '1')then
             for t in 0 to 63 loop
                 t2 <= h + sigma1(ee) + ch(ee, f, g) + k(t) + w(t);
@@ -152,7 +154,7 @@ begin
             hash(2) <= c  + hi(2); hash(3) <= d + hi(3); 
             hash(4) <= ee + hi(4); hash(5) <= f + hi(5);
             hash(6) <= g  + hi(6); hash(7) <= h + hi(7); 
-            
+            finish <= '1';
         end if;
     end if;
 end process;
