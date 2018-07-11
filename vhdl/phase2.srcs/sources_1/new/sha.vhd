@@ -56,7 +56,8 @@ component compression is
   Port (w, k: in  arr2d; 
         hi: in arr8_31;
         rst, clk, en: in std_logic;
-        hash: out arr8_31
+        hash: out arr8_31;
+        finish: out std_logic := '0'
         );
 end component;
 
@@ -144,7 +145,7 @@ k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
 
-u: expansion_perm generic map(31) port map (msg, clk, w1, w2, two_block);
+u: expansion_perm generic map(length) port map (msg,clk, w1, w2, two_block);
 
 l0: compression port map(w1, k, hi, rst, clk, en1,  hash1, finish1);
 l2: compression port map(w2, k, hash1, rst, clk, en2, hash2, finish2);
@@ -152,5 +153,5 @@ l2: compression port map(w2, k, hash1, rst, clk, en2, hash2, finish2);
 final_hash <= (hash1(0) & hash1(1)&hash1(2)&hash1(3)&hash1(4)&hash1(5)&hash1(6)&hash1(7)) when(two_block='0')
                 else (hash2(0)&hash2(1)&hash2(2)&hash2(3)&hash2(4)&hash2(5)&hash2(6)&hash2(7));
 ready <= finish1 when(two_block='0')  
-                else finish2;  
+                 else finish2;  
 end Behavioral;

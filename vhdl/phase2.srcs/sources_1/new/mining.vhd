@@ -35,7 +35,8 @@ use ieee.numeric_std.all;
 entity mining is
   Port (clk,rst,en1,en2: in std_logic;
         block_header: in unsigned (639 downto 0);
-        hash: out unsigned (255 downto 0)
+        hash: out unsigned (255 downto 0);
+        finish: out std_logic
         );
 end mining;
 
@@ -50,15 +51,24 @@ component sha is
 end component;
 signal nonce: unsigned(639 downto 0):= (others => '0');
 signal target: unsigned (255 downto 0):= x"1010101010101010101010101010101010101010101010101010101010101010";
-signal hash: unsigned(255 downto 0):= (others => '1');
-signal ready:std_logic;
-
+signal ready,ready1, comprst, finishs:std_logic:= '0';
+signal final_hash, final_hash1: unsigned(255 downto 0):= (others => '1');
 begin 
-u: sha generic map (639) port map (nonce+block_header, clk,rst,en1,en2, ready, final_hash);
-process(ready)
+u: sha generic map (639) port map (nonce+block_header, clk,comprst,en1,en2, ready, final_hash);
+u2: sha generic map (255) port map (final_hash, clk,comprst,en1,en2, ready1, final_hash1);
+process(ready1)
 begin
-    if(ready = '1') then
-        
+    if(ready1 = '1') then
+        if(final_hash1 > target and finishs /= '1')then
+            nonce <= nonce +1;
+            comprst <= '1';
+        else
+            finishs <= '0';
+        end if;
+    else
+        comprst <= '0';
     end if;
 end process;
+finish <= finishs;
+hash<=final_hash;
 end Behavioral;

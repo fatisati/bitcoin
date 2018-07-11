@@ -45,7 +45,7 @@ entity compression is
         hi: in arr8_31;
         rst, clk, en: in std_logic;
         hash: out arr8_31;
-        finish: std_logic := '0'
+        finish: out std_logic := '0'
         );
 end compression;
 
