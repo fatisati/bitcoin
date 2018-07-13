@@ -164,15 +164,14 @@ function expansion (blck: unsigned(511 downto 0)) return arr2d is
 
 begin
 
-for I in 0 to 15 loop
-        for J in 0 to 31 loop
-            w(I)(J) := blck(I*32+J);
-        end loop;
+    for I in 0 to 15 loop
+        w(I) := blck(I*32+31 downto I*32);
     end loop;
     for I in 16 to 63 loop
         s1 := sig1(w(I-1));
         s0 := sig0(w(I-12));
         w(I) :=s1+ w(I-6)+ s0+ w(I-15);
+--        w(34):= (others => '1');
     end loop;
     return w;
 end expansion;
@@ -180,7 +179,9 @@ end expansion;
 
 
 signal padding_msg: unsigned(1023 downto 0):= (others => '0');
-signal res1,res2: arr2d;
+signal res1,res2,w1s: arr2d;
+signal zero: arr2d := (others =>( others => '0'));
+signal u: arr2d := (others =>( others => 'U'));
 
 begin
 
@@ -188,25 +189,25 @@ process(clk)
 begin
     if(en='1')then
         if(rising_edge(clk)) then
-            if(length > 448)then
-                two_block<='1';
-            end if;
             padding_msg <= padding(msg);
-    
                 res1 <= expansion(padding_msg(511 downto 0));
+--                res1(33) <= (others => '0');
                 for I in 0 to 63 loop
-                    w1(I) <= perm(res1(I));
+                    w1s(I) <= perm(res1(I));
+                    w1(I) <= w1s(I);
                     w2(I) <= (others => '0');
                 end loop;
-            if (p = 1) then
-                two_block <= '1';
-                res2 <= expansion(padding_msg(1023 downto 512));
-                        for I in 0 to 63 loop
-                            w2(I) <= perm(res2(I));
-                        end loop;
-            end if;
-            exp_finish <= '1';
-        end if;
+                if(length > 448)then
+                    two_block<='1';
+                    res2 <= expansion(padding_msg(1023 downto 512));
+                    for I in 0 to 63 loop
+                        w2(I) <= perm(res2(I));
+                    end loop;
+                 end if;
+              if((w1s /= zero)and(w1s /= u))then
+                exp_finish <= '1';
+                end if;
+         end if;
     end if;
 end process;
 end Behavioral;
