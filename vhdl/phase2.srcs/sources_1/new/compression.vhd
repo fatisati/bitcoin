@@ -125,18 +125,18 @@ begin
 
 process(clk)
 begin
-    if(en = '1')then
-        if(rst = '1')then
-             a  <= x"6a09e667";
-             B  <= x"bb67ae85";
-             C  <= x"3c6ef372";
-             D  <= x"a54ff53a";
-             Ee <= x"510e527f";
-             F  <= x"9b05688c";
-             G  <= x"1f83d9ab";
-             H  <= x"5be0cd19";
-             finish <= '0';
-        elsif(clk = '1')then
+    if(rst = '1')then
+         a  <= x"6a09e667";
+         B  <= x"bb67ae85";
+         C  <= x"3c6ef372";
+         D  <= x"a54ff53a";
+         Ee <= x"510e527f";
+         F  <= x"9b05688c";
+         G  <= x"1f83d9ab";
+         H  <= x"5be0cd19";
+         finish <= '0';
+    elsif(en = '1')then
+        if(clk = '1')then
             for t in 0 to 63 loop
                 t2 <= h + sigma1(ee) + ch(ee, f, g) + k(t) + w(t);
                 t1 <= sigma0(a) + maj(a,b,c) + sigma2(c+d);
@@ -158,6 +158,4 @@ begin
         end if;
     end if;
 end process;
-
-
 end Behavioral;
