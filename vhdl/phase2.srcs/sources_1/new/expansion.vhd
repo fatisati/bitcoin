@@ -39,7 +39,7 @@ use work.pkg.all;
 entity expansion_perm is
   generic (length : integer := 31);
   Port (msg: in unsigned(length downto 0);
-        clk, en: in std_logic;
+        clk, en, rst: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
         two_block: out std_logic := '0';
@@ -187,7 +187,9 @@ begin
 
 process(clk)
 begin
-    if(en='1')then
+    if(rst = '1')then
+        exp_finish <= '0';
+    elsif(en='1')then
         if(rising_edge(clk)) then
             padding_msg <= padding(msg);
                 res1 <= expansion(padding_msg(511 downto 0));

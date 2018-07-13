@@ -45,7 +45,7 @@ architecture Behavioral of sha is
 component expansion_perm is
   generic (length : integer := 31);
   Port (msg: in unsigned(length downto 0);
-        clk, en: in std_logic;
+        clk, en, rst: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
         two_block: out std_logic := '0';
@@ -68,7 +68,8 @@ signal two_block: std_logic := '0';
 signal w1, w2, k:  arr2d; 
 signal hi: arr8_31;
 signal hash1, hash2: arr8_31;
-signal finish1,finish2, expansion_finish: std_logic := '0';
+signal finish1,finish2, expansion_finish, tmp: std_logic := '0';
+
 begin
 
 hi(0) <= x"6a09e667";
@@ -145,8 +146,7 @@ k(61) <= x"a4506ceb";
 k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
-
-u: expansion_perm generic map(length) port map (msg,clk,en, w1, w2, two_block, expansion_finish);
+u: expansion_perm generic map(length) port map (msg,clk,en, rst, w1, w2, two_block, expansion_finish);
 
 l0: compression port map(w1, k, hi, rst, clk, expansion_finish and not(finish1) and en,  hash1, finish1);
 l2: compression port map(w2, k, hash1, rst, clk, finish1 and not(finish2) and en, hash2, finish2);

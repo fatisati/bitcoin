@@ -121,6 +121,7 @@ begin
 end sigma2;
 
 signal t1, t2 : unsigned(31 downto 0);
+signal tmp : std_logic := '0';
 begin
 
 process(clk)
@@ -134,7 +135,7 @@ begin
          F  <= x"9b05688c";
          G  <= x"1f83d9ab";
          H  <= x"5be0cd19";
-         finish <= '0';
+         finish <= '0'; tmp <= '0';
     elsif(en = '1')then
         if(clk = '1')then
             for t in 0 to 63 loop
@@ -149,6 +150,8 @@ begin
                 c <= b;
                 a <= t1 + t1 + t1 - t2;
             end loop;
+            tmp <= '1';
+        elsif(tmp = '1')then
             
             hash(0) <= a  + hi(0); hash(1) <= b + hi(1);
             hash(2) <= c  + hi(2); hash(3) <= d + hi(3); 
