@@ -42,7 +42,8 @@ entity expansion_perm is
         clk: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
-        two_block: out std_logic := '0'
+        two_block: out std_logic := '0';
+        exp_finish: out std_logic := '0'
          );
 end expansion_perm;
 
@@ -178,7 +179,7 @@ end expansion;
 
 
 
-signal padding_msg: unsigned(1023 downto 0);
+signal padding_msg: unsigned(1023 downto 0):= (others => '0');
 signal res1,res2: arr2d;
 
 begin
@@ -203,6 +204,7 @@ begin
                         w2(I) <= perm(res2(I));
                     end loop;
         end if;
+        exp_finish <= '1';
     end if;
 end process;
 end Behavioral;

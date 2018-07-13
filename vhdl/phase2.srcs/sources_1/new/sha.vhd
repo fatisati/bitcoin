@@ -48,7 +48,8 @@ component expansion_perm is
         clk: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
-        two_block: out std_logic := '0'
+        two_block: out std_logic := '0';
+        exp_finish: out std_logic := '0'
          );
 end component;
 
@@ -63,7 +64,7 @@ end component;
 
 
 signal two_block: std_logic := '0';
-
+signal exp_finish: std_logic := '0';
 signal w1, w2, k:  arr2d; 
 signal hi: arr8_31;
 signal hash1, hash2: arr8_31;
@@ -145,7 +146,7 @@ k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
 
-u: expansion_perm generic map(length) port map (msg,clk, w1, w2, two_block);
+u: expansion_perm generic map(length) port map (msg,clk, w1, w2, two_block,exp_finish);
 
 l0: compression port map(w1, k, hi, rst, clk, en1,  hash1, finish1);
 l2: compression port map(w2, k, hash1, rst, clk, en2, hash2, finish2);
