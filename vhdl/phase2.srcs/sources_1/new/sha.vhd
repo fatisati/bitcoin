@@ -35,7 +35,7 @@ use ieee.numeric_std.all;
 entity sha is
        generic (length : integer := 31);
   Port ( msg: in unsigned(length downto 0);
-          clk,rst,en1,en2: in std_logic;
+          clk,rst,en: in std_logic;
           ready: out std_logic;
           final_hash: out unsigned(255 downto 0)
   );
@@ -45,7 +45,7 @@ architecture Behavioral of sha is
 component expansion_perm is
   generic (length : integer := 31);
   Port (msg: in unsigned(length downto 0);
-        clk: in std_logic;
+        clk, en: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
         two_block: out std_logic := '0';
@@ -64,11 +64,11 @@ end component;
 
 
 signal two_block: std_logic := '0';
-signal exp_finish: std_logic := '0';
+
 signal w1, w2, k:  arr2d; 
 signal hi: arr8_31;
 signal hash1, hash2: arr8_31;
-signal finish1,finish2: std_logic;
+signal finish1,finish2, expansion_finish: std_logic := '0';
 begin
 
 hi(0) <= x"6a09e667";
@@ -146,10 +146,10 @@ k(62) <= x"be49a3f7";
 k(63) <= x"c67178f2";
 
 
-u: expansion_perm generic map(length) port map (msg,clk, w1, w2, two_block,exp_finish);
+u: expansion_perm generic map(length) port map (msg,clk,en, w1, w2, two_block, expansion_finish);
 
-l0: compression port map(w1, k, hi, rst, clk, en1,  hash1, finish1);
-l2: compression port map(w2, k, hash1, rst, clk, en2, hash2, finish2);
+l0: compression port map(w1, k, hi, rst, clk, expansion_finish and not(finish1) and en,  hash1, finish1);
+l2: compression port map(w2, k, hash1, rst, clk, finish1 and not(finish2) and en, hash2, finish2);
 
 final_hash <= (hash1(0) & hash1(1)&hash1(2)&hash1(3)&hash1(4)&hash1(5)&hash1(6)&hash1(7)) when(two_block='0')
                 else (hash2(0)&hash2(1)&hash2(2)&hash2(3)&hash2(4)&hash2(5)&hash2(6)&hash2(7));

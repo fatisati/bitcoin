@@ -33,7 +33,7 @@ use ieee.numeric_std.all;
 --use UNISIM.VComponents.all;
 
 entity mining is
-  Port (clk,rst,en1,en2: in std_logic;
+  Port (clk,rst,en: in std_logic;
         block_header: in unsigned (639 downto 0);
         hash: out unsigned (255 downto 0);
         finish: out std_logic
@@ -44,7 +44,7 @@ architecture Behavioral of mining is
 component sha is
   generic (length : integer := 31);
   Port ( msg: in unsigned(length downto 0);
-          clk,rst,en1,en2: in std_logic;
+          clk,rst,en: in std_logic;
           ready: out std_logic;
           final_hash: out unsigned(255 downto 0)
   );
@@ -54,8 +54,8 @@ signal target: unsigned (255 downto 0):= x"1010101010101010101010101010101010101
 signal ready,ready1, comprst, finishs:std_logic:= '0';
 signal final_hash, final_hash1: unsigned(255 downto 0):= (others => '1');
 begin 
-u: sha generic map (639) port map (nonce+block_header, clk,comprst,en1,en2, ready, final_hash);
-u2: sha generic map (255) port map (final_hash, clk,comprst,en1,en2, ready1, final_hash1);
+u: sha generic map (639) port map (nonce+block_header, clk,comprst,en, ready, final_hash);
+u2: sha generic map (255) port map (final_hash, clk,comprst,ready, ready1, final_hash1);
 process(ready1)
 begin
     if(ready1 = '1') then

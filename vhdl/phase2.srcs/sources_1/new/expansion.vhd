@@ -39,7 +39,7 @@ use work.pkg.all;
 entity expansion_perm is
   generic (length : integer := 31);
   Port (msg: in unsigned(length downto 0);
-        clk: in std_logic;
+        clk, en: in std_logic;
         w1: out arr2d := (others => (others => '0'));
         w2: out arr2d := (others => (others => '0'));
         two_block: out std_logic := '0';
@@ -186,25 +186,27 @@ begin
 
 process(clk)
 begin
-    if(rising_edge(clk)) then
-        if(length > 448)then
-            two_block<='1';
+    if(en='1')then
+        if(rising_edge(clk)) then
+            if(length > 448)then
+                two_block<='1';
+            end if;
+            padding_msg <= padding(msg);
+    
+                res1 <= expansion(padding_msg(511 downto 0));
+                for I in 0 to 63 loop
+                    w1(I) <= perm(res1(I));
+                    w2(I) <= (others => '0');
+                end loop;
+            if (p = 1) then
+                two_block <= '1';
+                res2 <= expansion(padding_msg(1023 downto 512));
+                        for I in 0 to 63 loop
+                            w2(I) <= perm(res2(I));
+                        end loop;
+            end if;
+            exp_finish <= '1';
         end if;
-        padding_msg <= padding(msg);
-
-            res1 <= expansion(padding_msg(511 downto 0));
-            for I in 0 to 63 loop
-                w1(I) <= perm(res1(I));
-                w2(I) <= (others => '0');
-            end loop;
-        if (p = 1) then
-            two_block <= '1';
-            res2 <= expansion(padding_msg(1023 downto 512));
-                    for I in 0 to 63 loop
-                        w2(I) <= perm(res2(I));
-                    end loop;
-        end if;
-        exp_finish <= '1';
     end if;
 end process;
 end Behavioral;
